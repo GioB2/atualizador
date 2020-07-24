@@ -1,17 +1,74 @@
 {
-  "name": "client",
+  "name": "atualizador",
+  "productName": "Atualizador Call ECG",
+  "main": "electron/main.js",
   "version": "0.1.0",
   "private": true,
+  "build": {
+    "appId": "br.com.finer.callecg.atualizador",
+    "asar": true,
+    "dmg": {
+      "icon": "build/icon.icns",
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "icon": "build/1024x1024.png",
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "GioB2",
+        "repo": "atualizador"
+      }
+    ]
+  },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "adm-zip": "^0.4.16",
+    "auto-launch": "^5.0.5",
+    "electron-download-manager": "^2.1.2",
+    "electron-is-dev": "^1.2.0",
+    "electron-log": "^4.2.2",
+    "electron-updater": "^4.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "socket.io-client": "^2.3.0",
+    "unzip": "^0.1.11"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-electron": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -30,5 +87,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^9.1.0"
   }
 }
